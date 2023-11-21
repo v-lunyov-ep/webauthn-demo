@@ -1,0 +1,14 @@
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'config/**/*'
+    - 'db/*'
+    - 'spec/**/*'
+
+Style/Documentation:
+  Enabled: false
