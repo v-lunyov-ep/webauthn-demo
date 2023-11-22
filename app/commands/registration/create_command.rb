@@ -12,7 +12,7 @@ module Registration
 
     def call
       if user.valid?
-        broadcast(:ok, { user_attributes: user.attributes, create_options: create_options })
+        broadcast(:ok, { user_attributes: user.attributes, create_options: })
       else
         broadcast(:error, errors_hash(user))
       end
@@ -31,7 +31,7 @@ module Registration
     end
 
     def user
-      @user ||= User.new(username: username)
+      @user ||= User.new(username:)
     end
 
     def username

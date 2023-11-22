@@ -11,28 +11,26 @@ module Registration
     end
 
     def call
-      begin
-        webauthn_credential = relying_party.verify_registration(
-          params[:credential],
-          params.dig(:data, :create_options, :challenge),
-          user_verification: true
-        )
+      webauthn_credential = relying_party.verify_registration(
+        params[:credential],
+        params.dig(:data, :create_options, :challenge),
+        user_verification: true
+      )
 
-        credential = user.credentials.build(
-          external_id: Base64.strict_encode64(webauthn_credential.raw_id),
-          nickname: params.dig(:data, :user_attributes, :username),
-          public_key: webauthn_credential.public_key,
-          sign_count: webauthn_credential.sign_count
-        )
+      credential = user.credentials.build(
+        external_id: Base64.strict_encode64(webauthn_credential.raw_id),
+        nickname: params.dig(:data, :user_attributes, :username),
+        public_key: webauthn_credential.public_key,
+        sign_count: webauthn_credential.sign_count
+      )
 
-        if credential.save
-          broadcast(:ok, user)
-        else
-          broadcast(:error, errors_hash(user))
-        end
-      rescue WebAuthn::Error => e
-        broadcast(:error, "Verification failed: #{e.message}")
+      if credential.save
+        broadcast(:ok, user)
+      else
+        broadcast(:error, errors_hash(user))
       end
+    rescue WebAuthn::Error => e
+      broadcast(:error, "Verification failed: #{e.message}")
     end
 
     private

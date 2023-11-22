@@ -12,7 +12,7 @@ module Session
 
     def call
       if user
-        broadcast(:ok, { user_attributes: user.attributes, get_options: get_options })
+        broadcast(:ok, { user_attributes: user.attributes, get_options: })
       else
         broadcast(:error, "Username doesn't exist")
       end
@@ -28,7 +28,7 @@ module Session
     end
 
     def user
-      @user ||= User.find_by(username: username)
+      @user ||= User.find_by(username:)
     end
 
     def username

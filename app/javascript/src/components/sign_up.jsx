@@ -32,10 +32,11 @@ export const SignUp = () => {
 
   return(
     <AppLayout>
+      <h1>Sign up</h1>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
+        <Form.Group className="mb-2">
           <Form.Control
+            className="mb-2"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}

@@ -37,7 +37,7 @@ const create = async ({ data, onSuccess, onError }) => {
   const credential = await WebAuthnJSON.create({ "publicKey": data['create_options'] })
 
   callback({
-    callbackUrl: '/api/auth/v1/callback',
+    callbackUrl: '/api/session/v1/sign_up/callback',
     body: { data, credential },
     onSuccess,
     onError,
@@ -50,7 +50,7 @@ const get = async ({ data, onSuccess, onError }) => {
   const credential = await WebAuthnJSON.get({ "publicKey": data['get_options'] });
 
   callback({
-    callbackUrl: '/api/session/v1/callback',
+    callbackUrl: '/api/session/v1/sign_in/callback',
     body: { data, credential },
     onSuccess,
     onError,

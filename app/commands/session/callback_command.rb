@@ -17,7 +17,7 @@ module Session
         verified_webauthn_credential, stored_credential = relying_party.verify_authentication(
           params[:credential],
           params.dig(:data, :get_options, :challenge),
-          user_verification: true,
+          user_verification: true
         ) do |webauthn_credential|
           user.credentials.find_by(external_id: Base64.strict_encode64(webauthn_credential.raw_id))
         end

@@ -9,6 +9,7 @@ AllCops:
     - 'config/**/*'
     - 'db/*'
     - 'spec/**/*'
+    - './**/*.erb'
 
 Style/Documentation:
   Enabled: false

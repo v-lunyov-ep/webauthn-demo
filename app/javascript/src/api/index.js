@@ -7,7 +7,7 @@ const signUp = ({ username, onSuccess, onError }) => {
     body: JSON.stringify({ username }),
   };
 
-  fetch('/api/auth/v1/sign_up', requestOptions)
+  fetch('/api/session/v1/sign_up', requestOptions)
     .then((response) => response.json())
     .then((data) => {
       if (data['user_attributes']) {
